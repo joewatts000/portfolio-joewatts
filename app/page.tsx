@@ -1,55 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Github, ExternalLink, Code, Mail, Linkedin } from 'lucide-react';
+import { projects } from '@/lib/projects';
+import { FadeInWhenVisible } from '@/components/FadeInWhenVisible';
 
-const projects = [
-  {
-    title: 'E-commerce Platform',
-    description: 'A full-stack e-commerce solution built with Next.js and Stripe',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
-    tags: ['Next.js', 'TypeScript', 'Stripe', 'Tailwind'],
-    github: '#',
-    demo: '#',
-  },
-  {
-    title: 'Task Management App',
-    description: 'Real-time task management application with team collaboration features',
-    image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&q=80',
-    tags: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-    github: '#',
-    demo: '#',
-  },
-  {
-    title: 'AI Content Generator',
-    description: 'Content generation tool powered by OpenAI GPT-3',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
-    tags: ['React', 'OpenAI API', 'Express', 'PostgreSQL'],
-    github: '#',
-    demo: '#',
-  },
-];
 
-function FadeInWhenVisible({ children }: { children: React.ReactNode }) {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.5 }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export default function Home() {
   return (
@@ -63,25 +21,31 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Joe Watts
+              <hr className='border-primary/30 w-full h-0.5 my-4' />
               Full Stack Developer
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8">
               Building beautiful, functional, and scalable web applications
             </p>
             <div className="flex justify-center gap-4">
-              <Button size="lg">
-                View Projects
-              </Button>
-              <Button size="lg" variant="outline">
-                Contact Me
-              </Button>
+              <a href="#projects">
+                <Button size="lg" >
+                  View Projects
+                </Button>
+              </a>
+              <a href="#contact">
+                <Button size="lg" variant="outline">
+                  Contact Me
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-muted/50">
+      <section id="projects" className="min-h-screen py-20 bg-muted/50 flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInWhenVisible>
             <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
@@ -132,7 +96,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20">
+      <section id="about" className="py-20 min-h-screen flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInWhenVisible>
             <div className="max-w-3xl mx-auto text-center">
@@ -159,7 +123,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-muted/50">
+      <section id="contact" className="py-20 bg-muted/50 min-h-screen flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInWhenVisible>
             <div className="max-w-3xl mx-auto text-center">

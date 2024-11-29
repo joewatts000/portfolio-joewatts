@@ -1,101 +1,187 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+'use client';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Github, ExternalLink, Code, Mail, Linkedin } from 'lucide-react';
+
+const projects = [
+  {
+    title: 'E-commerce Platform',
+    description: 'A full-stack e-commerce solution built with Next.js and Stripe',
+    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
+    tags: ['Next.js', 'TypeScript', 'Stripe', 'Tailwind'],
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: 'Task Management App',
+    description: 'Real-time task management application with team collaboration features',
+    image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&q=80',
+    tags: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: 'AI Content Generator',
+    description: 'Content generation tool powered by OpenAI GPT-3',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+    tags: ['React', 'OpenAI API', 'Express', 'PostgreSQL'],
+    github: '#',
+    demo: '#',
+  },
+];
+
+function FadeInWhenVisible({ children }: { children: React.ReactNode }) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center pt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Full Stack Developer
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
+              Building beautiful, functional, and scalable web applications
+            </p>
+            <div className="flex justify-center gap-4">
+              <Button size="lg">
+                View Projects
+              </Button>
+              <Button size="lg" variant="outline">
+                Contact Me
+              </Button>
+            </div>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeInWhenVisible>
+            <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
+          </FadeInWhenVisible>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <FadeInWhenVisible key={index}>
+                <Card className="overflow-hidden">
+                  <div className="aspect-video relative overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-300"
+                      width={800}
+                      height={450}
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                    <p className="text-muted-foreground mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-2 py-1 bg-primary/10 rounded-full text-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-4">
+                      <Button variant="outline" size="sm">
+                        <Github className="w-4 h-4 mr-2" />
+                        Code
+                      </Button>
+                      <Button size="sm">
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Demo
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              </FadeInWhenVisible>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeInWhenVisible>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-8">About Me</h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                I&apos;m a passionate full-stack developer with expertise in modern web technologies.
+                I specialize in building scalable applications using React, Next.js, and Node.js.
+                With a strong foundation in both frontend and backend development, I create
+                seamless user experiences backed by robust server architectures.
+              </p>
+              <div className="flex justify-center gap-4">
+                <Button variant="outline">
+                  <Code className="w-4 h-4 mr-2" />
+                  View Resume
+                </Button>
+                <Button>
+                  <Mail className="w-4 h-4 mr-2" />
+                  Get in Touch
+                </Button>
+              </div>
+            </div>
+          </FadeInWhenVisible>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeInWhenVisible>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-8">Let&apos;s Connect</h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                I&apos;m always interested in hearing about new projects and opportunities.
+                Feel free to reach out if you&apos;d like to collaborate or just chat!
+              </p>
+              <div className="flex justify-center gap-4">
+                <Button size="lg">
+                  <Mail className="w-5 h-5 mr-2" />
+                  Email Me
+                </Button>
+                <Button size="lg" variant="outline">
+                  <Linkedin className="w-5 h-5 mr-2" />
+                  LinkedIn
+                </Button>
+              </div>
+            </div>
+          </FadeInWhenVisible>
+        </div>
+      </section>
+    </main>
   );
 }

@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Developer Portfolio',
-  description: 'Showcasing my web development projects and skills',
+  title: 'Joe Watts: Developer',
+  description: 'Joe Watts is a passionate full-stack developer with expertise in modern web technologies. He specializes in building scalable applications using React, Next.js, and Node.js. With a strong foundation in both frontend and backend development, he creates seamless user experiences backed by robust server architectures.',
 };
 
 export default function RootLayout({

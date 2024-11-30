@@ -3,11 +3,9 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Github, ExternalLink, Code, Mail, Linkedin } from 'lucide-react';
+import { Github, ExternalLink, Mail, Linkedin } from 'lucide-react';
 import { projects } from '@/lib/projects';
 import { FadeInWhenVisible } from '@/components/FadeInWhenVisible';
-
-
 
 export default function Home() {
   return (
@@ -35,7 +33,7 @@ export default function Home() {
                 </Button>
               </a>
               <a href="#contact">
-                <Button size="lg" variant="outline">
+                <Button size="lg">
                   Contact Me
                 </Button>
               </a>
@@ -54,7 +52,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <FadeInWhenVisible key={index}>
-                <Card className="overflow-hidden">
+                <Card className="overflow-hidden h-full">
                   <div className="aspect-video relative overflow-hidden">
                     <img
                       src={project.image}
@@ -67,7 +65,7 @@ export default function Home() {
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                     <p className="text-muted-foreground mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-4 md:min-h-16 items-baseline">
                       {project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
@@ -78,14 +76,22 @@ export default function Home() {
                       ))}
                     </div>
                     <div className="flex gap-4">
-                      <Button variant="outline" size="sm">
-                        <Github className="w-4 h-4 mr-2" />
-                        Code
-                      </Button>
-                      <Button size="sm">
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Demo
-                      </Button>
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noreferrer">
+                          <Button size="sm">
+                            <Github className="w-4 h-4 mr-2" />
+                            Code
+                          </Button>
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a href={project.demo} target="_blank" rel="noreferrer">
+                          <Button size="sm">
+                            Demo
+                            <ExternalLink className="w-4 h-4 ml-2" />
+                          </Button>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </Card>
@@ -102,20 +108,30 @@ export default function Home() {
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-8">About Me</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                I&apos;m a passionate full-stack developer with expertise in modern web technologies.
-                I specialize in building scalable applications using React, Next.js, and Node.js.
-                With a strong foundation in both frontend and backend development, I create
-                seamless user experiences backed by robust server architectures.
+                I&apos;m a passionate full-stack developer with over 10 years experience in web technologies.
+                I specialize in building scalable applications using React, Typescript and Node but I also love experimenting with any library or framework</p>
+              <p className="text-lg text-muted-foreground mb-8">With a strong foundation in frontend development and an evolving understanding of backend development, I create
+                seamless user experiences backed by robust server architectures
               </p>
+              {/* <p className="text-lg text-muted-foreground mb-8">I&apos;m also a father of 3, and passionate surfer</p>
+              <p className="text-lg text-muted-foreground mb-8">I&apos;m always open to new projects and opportunities</p> */}
               <div className="flex justify-center gap-4">
-                <Button variant="outline">
+                <Button onClick={() => {
+                  window.location.href = 'mailto:squarepeoplesolutions@gmail.com?subject=Contact%20From%20Joe%20Watts%20Portfolio%20Site';
+                }}>
+                  Get in Touch
+                  <Mail className="w-4 h-4 ml-2" />
+                </Button>
+                <a href="https://github.com/joewatts000" target="_blank" rel="noreferrer">
+                  <Button>
+                    <Github className="w-5 h-5 mr-2" />
+                    Github
+                  </Button>
+                </a>
+                {/* <Button variant="outline">
                   <Code className="w-4 h-4 mr-2" />
                   View Resume
-                </Button>
-                <Button>
-                  <Mail className="w-4 h-4 mr-2" />
-                  Get in Touch
-                </Button>
+                </Button> */}
               </div>
             </div>
           </FadeInWhenVisible>
@@ -133,14 +149,18 @@ export default function Home() {
                 Feel free to reach out if you&apos;d like to collaborate or just chat!
               </p>
               <div className="flex justify-center gap-4">
-                <Button size="lg">
-                  <Mail className="w-5 h-5 mr-2" />
+                <Button onClick={() => {
+                  window.location.href = 'mailto:squarepeoplesolutions@gmail.com?subject=Contact%20From%20Joe%20Watts%20Portfolio%20Site';
+                }}>
                   Email Me
+                  <Mail className="w-5 h-5 ml-2" />
                 </Button>
-                <Button size="lg" variant="outline">
-                  <Linkedin className="w-5 h-5 mr-2" />
-                  LinkedIn
-                </Button>
+                <a href="https://www.linkedin.com/in/joe-watts-3091952bb/" target="_blank" rel="noreferrer">
+                  <Button>
+                    <Linkedin className="w-5 h-5 mr-2" />
+                    LinkedIn
+                  </Button>
+                </a>
               </div>
             </div>
           </FadeInWhenVisible>

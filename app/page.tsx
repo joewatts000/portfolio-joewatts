@@ -52,7 +52,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <FadeInWhenVisible key={index}>
-                <Card className="overflow-hidden h-full">
+                <Card className="overflow-hidden h-full flex flex-col">
                   <div className="aspect-video relative overflow-hidden">
                     <img
                       src={project.image}
@@ -62,7 +62,7 @@ export default function Home() {
                       height={450}
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                     <p className="text-muted-foreground mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4 md:min-h-16 items-baseline">
@@ -75,7 +75,7 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 mt-auto mb-0">
                       {project.github && (
                         <a href={project.github} target="_blank" rel="noreferrer">
                           <Button size="sm">

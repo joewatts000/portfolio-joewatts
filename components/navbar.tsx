@@ -6,6 +6,8 @@ import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
+const menuItems = ['Home', 'Projects', 'About', 'Contact'];
+
 export function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -16,8 +18,6 @@ export function Navbar() {
   }, []);
 
   if (!mounted) return null;
-
-  const menuItems = ['Home', 'Projects', 'About', 'Contact'];
 
   return (
     <motion.nav

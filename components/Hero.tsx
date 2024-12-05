@@ -15,9 +15,9 @@ export function Hero() {
             <hr className='border-primary/30 w-full h-0.5 my-4' />
             Full Stack Developer
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8">
+          {/* <p className="text-xl md:text-2xl text-muted-foreground mb-8">
             Building beautiful, functional, and scalable web applications
-          </p>
+          </p> */}
           <div className="flex justify-center gap-4">
             <a href="#projects">
               <Button size="lg" >
